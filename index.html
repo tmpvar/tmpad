@@ -1,21 +1,213 @@
 <html>
 <head>
   <title>tmpad</title>
+  <link rel="stylesheet" type="text/css" href="http://tmpvar.com/core.css">
+  <style>
+    .content {
+      color: white;
+      padding: 10px;
+      font-family: verdana, arial;
+    }
+
+    #wrapper {
+      margin-bottom:30px;
+    }
+
+    .content img {
+      padding: 0;
+      margin:0;
+      margin-top: 10px;
+      margin-right: 10px;
+    }
+
+    .content img.right {
+      margin-right: 0px;
+    }
+    .content img.right {
+      margin-left: 2px;
+    }
+
+    h2 {
+      margin-top: 2em;
+    }
+
+    a {
+      color: #F60;
+      text-decoration: none;
+    }
+  </style>
 </head>
 <body>
-<div id="readme" class="announce md" data-path="/"><div class="wikistyle"><h1>tmpad (rev. 4)</h1>
+  <div id="wrapper">
+    <div id="header">
+      <img src="static/img/revision4-500.jpg" alt="revision 4"/>
+    </div>
+    <div class="content">
+      <h1>tmpad</h1>
 
-<p>This all started when I realized my 25$ korg nanopad was busted.  I started looking around at getting something a bit more robust and noticed very quickly that this type of equipment is really expensive.  So before diving in and paying for something I decided to try my hand at creating one myself.</p>
+      <p>This all started when I realized my 25$ korg nanopad was busted.  I started looking around at getting something a bit more robust and noticed very quickly that this type of equipment is really expensive.  So before diving in and paying for something I decided to try my hand at creating one myself.</p>
 
-<p>Goals:</p>
+      <p>Goals:</p>
 
-<ul>
-<li>pressure sensitivity</li>
-<li>keep it simple</li>
-<li>low price</li>
-<li>use materials on hand</li>
-</ul>
+      <ul>
+        <li>pressure sensitivity</li>
+        <li>keep it simple</li>
+        <li>low price</li>
+        <li>use materials on hand</li>
+      </ul>
 
-<h2>Keeping it real simple</h2></div></div>
+      <h2>Breaking ground</h2>
+      <p>
+        How does one make a low cost velocity sensitive button? I struggled with this one for a while. My brother and I spent an hour or so whiteboarding ideas and iterating through them to their ends.  In one such iteration we realized that blocking the path of light would be perfect.  Not only would it provide a ramp in voltage, but would also eliminate any complicated machinery.
+      </p>
+
+      <p>
+        Thankfully due to some previous experimentation with infrared (IR) touchscreens (and the bad decision to buy parts at RadioShack) I had some IR emitters/detectors laying around.
+        <img src="static/img/leds-500.jpg" alt="touchscreen experiement leftover leds" />
+      </p>
+
+
+      <p>
+        Now came the real problem.  How do you block the path of light in a consistant manner without setting up guides, pivots, or etc... We went through nearly every possibility we could think of.
+      </p>
+
+      <h3>Put the detector in the button</h3>
+      <p>
+        This method required a flap cut in paper that allowed the detector to pass through and complete the circut. This caused an argument about the durability of the paper and the precision required to keep the button in line.
+      </p>
+
+      <h3>Have 2 digital bumper switches that detect on and off</h3>
+      <p>
+        A decent solution, but this still required an actual button with the physical constraits of following a path without pitching.
+      </p>
+
+      <h3>Use a spring and some rubber</h3>
+      <p>
+        The idea here is simple:
+        <ul>
+          <li>tape/screw a spring to a thin block of wood</li>
+          <li>mount rubber bumpers on edges</li>
+          <li>create side walls to mimimize horizontal travel</li>
+          <li>mount the emitter/detector to the floor of the rig</li>
+        </ul>
+
+        This idea was so simple that it just <em>had</em> to work.
+      </p>
+
+      <h2>First prototype</h2>
+      <p>
+        <img src="static/img/revision1-exposed-250.jpg" alt="first revision" class="left" />
+        <img src="static/img/revision1-250.jpg" alt="first revision" class="right" />
+        So we built it, and what do you know.. it works!  I hooked it up to an arduino uno that was laying around and in a few minutes we were reading the voltage off of the IR detector.
+      </p>
+      <p>
+        So you may be asking, "how does this even work?".  Well, basically the spring keeps the wood button elevated away from the floor by ~1/4 of an inch.  In that gap, the infrared is able to pass cleanly under the button and be detected on the other side.  When pressing the button the gap is closed and the circuit is broken.
+      </p>
+      <h3>Problems</h3>
+      <p>
+        While this solution worked rather well, it was prone to bouncing around (it was attached to a spring after all!). Also, pressing the button off center caused the button to tilt and while it worked it felt really flimsy.
+      </p>
+
+      <h2>Second prototype</h2>
+      <p>
+        We decided to iterate. Based on the problems we noticed in the first prototype, we set forth to conquer the button once and for all.  Unfortunately this was harder than it seemed.  There was some head banging and then we once again, did the simplest thing imaginable.
+
+      </p>
+      <p>
+        <img src="static/img/revision2-500.jpg" alt="first revision" class="left" />
+      </p>
+      <p>
+        As you can see this looks nothing like a real mpc/drumpad.  It does however, function as expected.. for the most part.
+        one of the first things we noticed is that the wood on wood action actually caused pinching if you didn't press directly in the center.  That pinching caused the button not to return to its natural position.  We continued on...
+      </p>
+
+      <h2>Third prototype (aka fingertrap)</h2>
+      <p>
+        Using the foam from the inside of a macbook box we stumbled upon a discovery.  Apparently, this foam (probably because it is black) absorbs all of the IR and can actually cause the circut to be broken!  After testing this on on my desk we made a prototype.
+      </p>
+      <p>
+        <img src="static/img/revision3-exposed-500.jpg" alt="revision 3 exposed" />
+        <img src="static/img/revision3-500.jpg" alt="revision 3" />
+      </p>
+      <p>
+        So this works really well, infact it works so well we kept stabbing ourselves with the poorly located screws.  At this stage we hooked this thing up with node-midi and were actually playing a note in ableton! Very exciting, but we were not quite there.
+      </p>
+
+      <h2>Fourth prototype</h2>
+      <p>
+        It was time to get serious. We sketched out a plan on the whiteboard and got to work!
+        <img src="static/img/revision4-whiteboard-500.jpg" alt="revision 4 whiteboarding" />
+      </p>
+      <p>
+        Top and middle plates
+        <img src="static/img/revision4-top-middle-500.jpg" alt="top and middle" />
+      </p>
+      <p>
+        Stacked to give an idea as to what we are going for..
+        <img src="static/img/revision4-top-middle2-500.jpg" alt="top and middle stack" />
+      </p>
+      <p>
+        Added slots in the middle plate to hold the leds and drill some holes through the bottom plate for the led leads
+        <img src="static/img/revision4-led-slots-500.jpg" alt="led slots and holes for pins" />
+      </p>
+      <p>
+        Push the leads of the leds through the holes and bend the leds into position
+        <img src="static/img/revision4-leds-500.jpg" alt="leds in place" />
+      </p>
+      <p>
+        Add the foam layer
+        <img src="static/img/revision4-foam-layer-500.jpg" alt="" />
+      </p>
+      <p>
+        Screw it all together with drywall screws.. it's a prototype!
+        <img src="static/img/revision4-screwed-500.jpg" alt="screwed" />
+      </p>
+      <p>
+        Solder it all together. Sorry to make any EE's out there cry, but since we're only powering 4 leds I figured it would be safe to have them on all of the time.  Anyhow, color codes here are:
+        <ul>
+          <li><em>red</em> - 3.0v</li>
+          <li><em>black</em> - ground</li>
+          <li><em>green</em> - signal (these go to the arduino analog inputs A0-A3)</li>
+        </ul>
+        <img src="static/img/revision4-solder-500.jpg" alt="soldering" />
+      </p>
+      <p>
+        Test each connection, fortunately there were no problems (barring underpowered the leds) the first time around!
+        <img src="static/img/revision4-testing-500.jpg" alt="testing" />
+      </p>
+      </p>
+        And connect it to the arduino!
+        <img src="static/img/revision4-arduino-side-500.jpg" alt="arduino side view" />
+        <img src="static/img/revision4-arduino-straight-500.jpg" alt="arduino straight on" />
+      </p>
+      <p>
+        Modify the code to support 4 buttons instead of 1 and begin composing some hardcore brostep!
+        <img src="static/img/revision4-usage-500.jpg" alt="usage" />
+      </p>
+
+      <h2>Code</h2>
+      <p>
+        This page and source code can be found on <a href="http://github.com/tmpvar/tmpad">github</a>
+      </p>
+      <h2>Contact</h2>
+      <p>
+        follow my brother (<a href="http://twitter.com/R_H_2">@R_H_2</a>) and I (<a href="http://twitter.com/tmpvar">@tmpvar</a>) on twitter.
+      </p>
+      <h3>Custom builds</h3>
+      <p>
+        If you think you just can't live without one of these and want us to build you one, send me an email (<a href="mailto:tmpvar@gmail.com">tmpvar@gmail.com</a>) and we'll work something out.
+      </p>
+    </div>
+  </div>
+  <script type="text/javascript">
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-633948-2']);
+    _gaq.push(['_trackPageview']);
+    (function() {
+      var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+      ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+  </script>
 </body>
 </html>
