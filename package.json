@@ -1,0 +1,16 @@
+{
+  "author": "Elijah Insua <tmpvar@gmail.com> (http://tmpvar.com)",
+  "name": "tmpad",
+  "description": "homemade velocity sensitive pads like yo mama used to make",
+  "version": "0.0.1",
+  "homepage": "http://tmpvar.com/project/tmpad/",
+  "repository": {
+    "type": "git",
+    "url": "git://github.com//tmpvar/tmpad.git"
+  },
+  "dependencies": {
+    "serialport" : "0.7.3",
+    "midi" : "https://github.com/tmpvar/node-midi/tarball/master"
+  },
+  "devDependencies": {}
+}
