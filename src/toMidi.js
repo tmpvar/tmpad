@@ -1,6 +1,4 @@
-var serialport = require('serialport');
-var SerialPort = serialport.SerialPort;
-var parsers    = serialport.parsers;
+var SerialPort = require('serialport').SerialPort;
 var sp = new SerialPort('/dev/tty.usbmodemfd121', { baudrate: 57600 });
 var midi = require('midi');
 var output = new midi.output();
@@ -9,8 +7,6 @@ output.getPortName(0);
 output.openPort(0);
 
 var buffer = "", on = [false, false, false, false];
-var average = 0, heldTimer;
-var note= 0;
 sp.on('data',function(data) {
   buffer += data.toString()
   if (buffer.indexOf('\n') === -1) {
@@ -27,11 +23,6 @@ sp.on('data',function(data) {
     last = current;
 
     if (current > 0 && on[port] !== true) {
-
-      note++;
-      if (note >= 127) {
-        note = 0;
-      }
 
       // TODO: calculate velocity based on the distance traveled
       //       total distance 3.17500mm
