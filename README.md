@@ -16,7 +16,7 @@ using the arduino software (http://www.arduino.cc/en/Main/software) upload the `
 
 ### toMidi.js
 
-Modify https://github.com/tmpvar/tmpad/blob/master/src/toMidi.js#L4 to point at the correct usb port.  You can find the port in the arduino application under the tools->Serial Port menu.
+Modify https://github.com/tmpvar/tmpad/blob/master/src/toMidi.js#L2 to point at the correct usb port.  You can find the port in the arduino application under the tools->Serial Port menu.
 
 Now you are ready to go! run `node src/toMidi.js` and use a program that understands midi to play some sounds!
 
