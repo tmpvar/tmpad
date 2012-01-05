@@ -20,6 +20,13 @@ Modify https://github.com/tmpvar/tmpad/blob/master/src/toMidi.js#L4 to point at 
 
 Now you are ready to go! run `node src/toMidi.js` and use a program that understands midi to play some sounds!
 
+## Props
+
+This project would not have been possible without the following nodejs libraries:
+
+ * http://github.com/voodootikigod/node-serialport
+ * http://github.com/justinlatimer/node-midi
+
 ## MIT License
 
 see: https://github.com/tmpvar/tmpad/blob/master/LICENSE.txt
