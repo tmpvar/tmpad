@@ -1,6 +1,6 @@
 # tmpad
 
-a DIY midi pad using infrard, arduino, and nodejs.
+a DIY midi pad using infrared, arduino, and nodejs.
 
 Hardware construction steps: http://tmpvar.com/project/tmpad
 
